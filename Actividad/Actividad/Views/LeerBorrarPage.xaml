@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Actividad.Views.LeerBorrarPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:viewModels="clr-namespace:Actividad.ViewModels;assembly=Actividad"
+             ios:Page.UseSafeArea="true"
+             Title="Personas">
+
+    <ContentPage.BindingContext>
+        <viewModels:LeerBorrarViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid Margin="10">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <ListView x:Name="ListViewPersonas"
+                      Grid.Row="0"
+                      HasUnevenRows="True"
+                      IsPullToRefreshEnabled="False"
+                      ItemsSource="{Binding Personas}"
+                      ItemSelected="ListaPersonas_OnItemSelected">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackLayout Grid.Column="0"
+                                             Style="{StaticResource Datos}">
+
+                                    <StackLayout Style="{StaticResource PropiedadDatos}">
+                                        <Label Text="Nombre: " />
+                                        <Label Text="{Binding Nombre}"
+                                               Style="{StaticResource EtiquetasDatos}" />
+                                    </StackLayout>
+
+                                    <StackLayout Style="{StaticResource PropiedadDatos}">
+                                        <Label Text="Correo: " />
+                                        <Label Text="{Binding Correo}"
+                                               Style="{StaticResource EtiquetasDatos}" />
+                                    </StackLayout>
+
+                                    <StackLayout Style="{StaticResource PropiedadDatos}">
+                                        <Label Text="Teléfono: " />
+                                        <Label Text="{Binding Telefono}"
+                                               Style="{StaticResource EtiquetasDatos}" />
+                                    </StackLayout>
+
+                                </StackLayout>
+
+                                <Button Grid.Column="1"
+                                        Text="{StaticResource EmojiBasura}"
+                                        Style="{StaticResource BotonBorrar}"
+                                        CommandParameter="{Binding Id}"
+                                        Clicked="ButtonBorrar_OnClicked" />
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+            <Button Grid.Row="1"
+                    Text="Agregar"
+                    Style="{StaticResource BotonCrear}"
+                    Clicked="ButtonAgregar_OnClicked" />
+
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Actividad.ViewModels;assembly=Actividad"
+             x:Class="Actividad.Views.CrearEditarPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:CrearEditarViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+
+        <StackLayout Style="{StaticResource Formulario}">
+
+            <Entry x:Name="EntryId"
+                   Text="{Binding Persona.Id}"
+                   IsVisible="False" />
+
+            <Label Text="Nombre" Margin="2" />
+            <Entry x:Name="EntryNombre"
+                   Text="{Binding Persona.Nombre}"
+                   Style="{StaticResource CajasTextoDatos}"
+                   Keyboard="Text" />
+
+            <Label Text="Correo" Margin="2" />
+            <Entry x:Name="EntryCorreo"
+                   Text="{Binding Persona.Correo}"
+                   Style="{StaticResource CajasTextoDatos}"
+                   Keyboard="Email" />
+
+            <Label Text="Telefono" Margin="2" />
+            <Entry x:Name="EntryTelefono"
+                   Text="{Binding Persona.Telefono}"
+                   Style="{StaticResource CajasTextoDatos}"
+                   Keyboard="Telephone" />
+
+            <Label x:Name="LabelInformacion" Margin="2,2,2,5" />
+
+            <Button x:Name="ButtonGuardar"
+                    Text="Crear"
+                    Style="{StaticResource BotonEditar}"
+                    Clicked="ButtonGuardar_OnClicked" />
+
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>
